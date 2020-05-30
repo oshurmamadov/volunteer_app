@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:volunteerapp/common/utils.dart';
 import 'package:volunteerapp/data/dto.dart';
 import 'package:volunteerapp/request_creator/doctor_dashboard.dart';
 
@@ -35,6 +36,8 @@ class RequestDetails extends StatelessWidget {
                   ],
                 ),
                 Padding(padding: EdgeInsets.all(10),),
+                RequestProductTitle('Намуд/Type: ', 'Навъ хоихъ'),
+                Padding(padding: EdgeInsets.all(10),),
                 RequestProductTitle('Беморхӯна ё Анбор/Storage: ', request.owner),
                 Padding(padding: EdgeInsets.all(10),),
                 RequestProductTitle('Ҷавъобгар: ', request.volunteer),
@@ -58,6 +61,7 @@ class RequestDetails extends StatelessWidget {
                         }
 
                 ),
+                CustomButton('Қабулам чуд', (){})
               ],
             ),
           ),
