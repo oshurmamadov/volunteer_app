@@ -1,7 +1,8 @@
+
 import 'package:flutter/material.dart';
-import 'package:volunteerapp/new_request.dart';
-import 'package:volunteerapp/personal_data.dart';
-import 'package:volunteerapp/utils.dart';
+import 'package:volunteerapp/request_creator/new_request.dart';
+import 'package:volunteerapp/common/personal_data.dart';
+import 'package:volunteerapp/common/utils.dart';
 
 class DoctorDashboard extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class DoctorDashboard extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Йордамкунен Асбоб'),
+          title: Text('Йордамкунак'),
         ),
         body: TabBarView(
           children: [
@@ -27,7 +28,7 @@ class DoctorDashboard extends StatelessWidget {
                           return Container(
                             margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
                             color: Colors.white,
-                            child: RequestCell(i.toString()),
+                            child: RequestCell(i.toString(), (){}),
                           );
                         }
                     ),
@@ -72,64 +73,68 @@ class DoctorDashboard extends StatelessWidget {
 
 class RequestCell extends StatelessWidget {
   final String requestNumber;
+  final VoidCallback onPressed;
 
-  RequestCell(this.requestNumber);
+  RequestCell(this.requestNumber,  this.onPressed);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Flexible(
-                  child: Center(
-                      child: Text(
-                        'Зирдоск ',
-                        style: TextStyle(
-                            fontSize: 17.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Arvo'
-                        ),
-                        textAlign: TextAlign.center,
-                      )
+    return FlatButton(
+      onPressed: onPressed,
+      child:  Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Flexible(
+                    child: Center(
+                        child: Text(
+                          'Зирдоск ',
+                          style: TextStyle(
+                              fontSize: 17.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Arvo'
+                          ),
+                          textAlign: TextAlign.center,
+                        )
+                    ),
                   ),
-                ),
-                Flexible(
-                  child: Center(
-                      child: Text(
-                        '25 дӯна ',
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Arvo'
-                        ),
-                        textAlign: TextAlign.center,
-                      )
-                  ),
-                )
-              ],
-            ),
-            //  Flexible(
-            Padding(padding: EdgeInsets.all(10)),
-            RequestSimpleCell('Хуҷаин: Азизбеков Лашкарбек'),
-            RequestSimpleCell('Хазина: Аптека №4'),
-            RequestSimpleCell('Ҷавъобгар: Лашкарбеков Азизбек'),
-            Padding(padding: EdgeInsets.all(10)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                RequestSimpleCell("ҳал судъҷин"),
-                RequestSimpleCell(" | "),
-                RequestSimpleCell("21.05.2020")
-              ],
-            ),
-          ],
-        )
+                  Flexible(
+                    child: Center(
+                        child: Text(
+                          '25 дӯна ',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Arvo'
+                          ),
+                          textAlign: TextAlign.center,
+                        )
+                    ),
+                  )
+                ],
+              ),
+              //  Flexible(
+              Padding(padding: EdgeInsets.all(10)),
+              //RequestSimpleCell('Хуҷаин: Азизбеков Лашкарбек'),
+              RequestSimpleCell('Беморӯна ё Анбор/Storage: Аптека №4'),
+              RequestSimpleCell('Ҷавъобгар: Лашкарбеков Азизбек'),
+              Padding(padding: EdgeInsets.all(10)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  RequestSimpleCell("ҳал судъҷин"),
+                  RequestSimpleCell(" | "),
+                  RequestSimpleCell("21.05.2020")
+                ],
+              ),
+            ],
+          )
+      ),
     );
   }
 }

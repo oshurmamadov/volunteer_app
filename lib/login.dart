@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:volunteerapp/utils.dart';
-import 'package:volunteerapp/volunteer_dashboard.dart';
+import 'package:volunteerapp/common/utils.dart';
+import 'package:volunteerapp/storage/volunteer_dashboard.dart';
 
-import 'doctor_dashboard.dart';
+import 'request_creator/doctor_dashboard.dart';
 import 'main.dart';
 
 class Login extends StatelessWidget {
@@ -11,7 +11,7 @@ class Login extends StatelessWidget {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Text('Пехъвъоз-----='),
+          title: Text('Пехъвъоз'),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,

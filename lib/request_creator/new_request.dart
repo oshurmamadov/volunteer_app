@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:volunteerapp/utils.dart';
-
-import 'main.dart';
+import 'package:volunteerapp/common/utils.dart';
 
 class NewRequest extends StatelessWidget {
   @override
@@ -19,7 +17,17 @@ class NewRequest extends StatelessWidget {
           children: [
             NewRequestSimpleCell('Хасхор/Product'),
             NewRequestSimpleCell('Хасхор Дӯна/Product Count'),
-            NewRequestSimpleCell('Хазина/Storage'),
+            NewRequestSimpleCell('Беморӯна ё Анбор/Storage'),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child:  TextField(
+                maxLines: null,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "ичизга гап ага ца вид..."
+                ),
+              ),
+            ),
             CustomButton('Въедъху боз', (){})
           ],
         ),

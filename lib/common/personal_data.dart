@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:volunteerapp/utils.dart';
-import 'main.dart';
+import 'package:volunteerapp/common/utils.dart';
+import '../main.dart';
 
 class InfoCell extends StatelessWidget {
   final bool forDoctors;
