@@ -17,7 +17,7 @@ class RequestDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Хоихъ даруналот'),
+          title: isEditable ? Text('Хоихъ даруналот') : Text('Хоихъ даруналот - Таърих'),
           leading: BackButton(
             color: Colors.white,
           ),
@@ -52,16 +52,22 @@ class RequestDetails extends StatelessWidget {
                   ),
                   textAlign: TextAlign.left,
                 ),
-                ListView.builder(
-                        primary: false,
-                        shrinkWrap: true,
-                        itemCount: 2,
-                        itemBuilder: (context, i) {
-                          return RequestProductItem(request.product[0]);
-                        }
+                Container(
+                  child: ListView.builder(
+                      primary: false,
+                      shrinkWrap: true,
+                      itemCount: 2,
+                      itemBuilder: (context, i) {
+                        return RequestProductItem(request.product[0], isEditable);
+                      }
 
-                ),
-                CustomButton('Қабулам чуд', (){})
+                  ),
+                )
+                ,
+                Visibility(
+                  visible: isEditable,
+                  child: CustomButton('Қабул кенам', (){}),
+                )
               ],
             ),
           ),
@@ -108,8 +114,9 @@ class RequestProductTitle extends StatelessWidget {
 
 class RequestProductItem extends StatelessWidget {
   final ProductUnit productUnit;
+  final bool isEditable;
 
-  RequestProductItem(this.productUnit);
+  RequestProductItem(this.productUnit, this.isEditable);
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +142,7 @@ class RequestProductItem extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Padding(padding: EdgeInsets.all(5),),
-            ProductAvailability()
+            ProductAvailability(isEditable)
           ],
         ),
       )
@@ -145,17 +152,23 @@ class RequestProductItem extends StatelessWidget {
 }
 
 class ProductAvailability extends StatefulWidget {
+  final bool isEditable;
+
+  ProductAvailability(this.isEditable);
 
   @override
   State<StatefulWidget> createState() {
-    return ProductAvailabilityCell();
+    return ProductAvailabilityCell(isEditable);
   }
 }
 
 class ProductAvailabilityCell extends State<ProductAvailability> {
+  final bool isEditable;
   bool _available = false;
   bool _notAvailable = false;
   bool _partiallyAvailable = false;
+
+  ProductAvailabilityCell(this.isEditable);
 
   @override
   Widget build(BuildContext context) {
@@ -164,23 +177,31 @@ class ProductAvailabilityCell extends State<ProductAvailability> {
       children: [
         Visibility(
           visible: !_partiallyAvailable,
-          child:  ProductAvailabilityCheckBox('Йаст', _available, (value) {
-            setState(() {
-              _notAvailable = false;
-              _partiallyAvailable = false;
-              _available = value;
-            });
-          }),
+          child:  ProductAvailabilityCheckBox(
+              'Йаст',
+              _available,
+              isEditable ? (value) {
+                setState(() {
+                  _notAvailable = false;
+                  _partiallyAvailable = false;
+                  _available = value;
+                });
+              } : null
+          ),
         ),
         Visibility(
           visible: !_partiallyAvailable,
-          child: ProductAvailabilityCheckBox('Нист', _notAvailable, (value) {
-            setState(() {
-              _available = false;
-              _partiallyAvailable = false;
-              _notAvailable = value;
-            });
-          }),
+          child: ProductAvailabilityCheckBox(
+              'Нист',
+              _notAvailable,
+              isEditable ? (value) {
+                setState(() {
+                _available = false;
+                _partiallyAvailable = false;
+                _notAvailable = value;
+                });
+              } : null
+          ),
         ),
         Expanded(
           //flex: 50,
@@ -198,13 +219,13 @@ class ProductAvailabilityCell extends State<ProductAvailability> {
               ),
               Checkbox(
                 value: _partiallyAvailable,
-                onChanged: (value) {
+                onChanged: isEditable ? (value) {
                   setState(() {
                     _available = false;
                     _notAvailable = false;
                     _partiallyAvailable = value;
                   });
-                },
+                } : null,
               ),
               Visibility(
                 visible: _partiallyAvailable,
