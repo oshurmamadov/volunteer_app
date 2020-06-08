@@ -6,20 +6,60 @@ import 'package:volunteerapp/data/dto.dart';
 import 'package:volunteerapp/storage/request_details.dart';
 
 import '../request_creator/doctor_dashboard.dart';
+import '../data/translations_wrapper.dart';
 
-class VolunteerDashboard extends StatelessWidget {
+void handleClick(String value) {
+  if (value == 'to_language'.translate()) {
+
+  } else {
+
+  }
+}
+
+class VolunteerDashboard extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return VolunteerDashboardImpl();
+  }
+
+}
+
+class VolunteerDashboardImpl extends State<VolunteerDashboard> {
+
   @override
   Widget build(BuildContext context) {
+    String _language = 'to_language'.translate();
+    String _logout = 'logout'.translate();
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Йордамкунак'),
+          title: Text('storage_title'.translate()),
+          actions: [
+            PopupMenuButton<String>(
+              onSelected: (value) {
+                if (value == _language) {
+                  setState(() {
+                    TranslationWrapper().switchLanguage();
+                  });
+                }
+              },
+              itemBuilder: (BuildContext context) {
+                return {_language, _logout}.map((String choice) {
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Text(choice),
+                  );
+                }).toList();
+              },
+            )
+          ],
         ),
         body: TabBarView(
           children: [
-            StorageActiveRequests('Зинда хоихъен / Active requests', true),
-            StorageActiveRequests('Таърих / History', false),
+            StorageActiveRequests('active_requests'.translate(), true),
+            StorageActiveRequests('history'.translate(), false),
             new Container(
               color: Colors.white,
               child: InfoCell(false),
