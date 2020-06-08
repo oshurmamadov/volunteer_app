@@ -36,7 +36,7 @@ class RequestDetails extends StatelessWidget {
                   ],
                 ),
                 Padding(padding: EdgeInsets.all(10),),
-                RequestProductTitle('Намуд/Type: ', 'Навъ хоихъ'),
+                RequestProductTitle('Намуд/Type: ', request.status),
                 Padding(padding: EdgeInsets.all(10),),
                 RequestProductTitle('Беморхӯна ё Анбор/Storage: ', request.owner),
                 Padding(padding: EdgeInsets.all(10),),
@@ -55,7 +55,7 @@ class RequestDetails extends StatelessWidget {
                 ListView.builder(
                         primary: false,
                         shrinkWrap: true,
-                        itemCount: 6,
+                        itemCount: 2,
                         itemBuilder: (context, i) {
                           return RequestProductItem(request.product[0]);
                         }

@@ -58,7 +58,7 @@ class StorageActiveRequests extends StatelessWidget {
     'Хъицӯн медпункт',
     '',
     '22.05.2020',
-    'навъ',
+    'Навъ',
     'Мамадназарбеков Давлатбек',
   );
 
