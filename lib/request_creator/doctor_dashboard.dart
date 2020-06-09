@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:volunteerapp/request_creator/new_request.dart';
 import 'package:volunteerapp/common/personal_data.dart';
 import 'package:volunteerapp/common/utils.dart';
+import '../data/translations_wrapper.dart';
 
 class DoctorDashboard extends StatelessWidget {
   @override
@@ -121,8 +122,8 @@ class RequestCell extends StatelessWidget {
               //  Flexible(
               Padding(padding: EdgeInsets.all(10)),
               //RequestSimpleCell('Хуҷаин: Азизбеков Лашкарбек'),
-              RequestSimpleCell('Беморӯна ё Анбор/Storage: Аптека №4'),
-              RequestSimpleCell('Ҷавъобгар: Лашкарбеков Азизбек'),
+              RequestSimpleCell('storage'.translate() + ': Аптека №4'),
+              RequestSimpleCell('reporter'.translate() + ': Лашкарбеков Азизбек'),
               Padding(padding: EdgeInsets.all(10)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

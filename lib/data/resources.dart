@@ -5,7 +5,9 @@ Map<String, String> englishTranslations = {
   'to_language': 'Хугънӯгэ',
   'logout': 'Logout',
   'active_requests': 'Active requests',
-  'history': 'History'
+  'history': 'History',
+  'storage': 'Storage',
+  'reporter': 'Reporter',
 };
 
 Map<String, String> pamiriTranslations = {
@@ -13,5 +15,7 @@ Map<String, String> pamiriTranslations = {
   'to_language': 'English',
   'logout': 'Нахътим',
   'active_requests': 'Зинда хоихъен ',
-  'history': 'Таърих'
+  'history': 'Таърих',
+  'storage': 'Беморӯна ё Анбор',
+  'reporter': 'Ҷавъобгар',
 };
