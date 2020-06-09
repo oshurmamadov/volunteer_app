@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:volunteerapp/common/utils.dart';
-import '../main.dart';
+import '../data/translations_wrapper.dart';
 
 class InfoCell extends StatelessWidget {
   final bool forDoctors;
@@ -13,15 +13,15 @@ class InfoCell extends StatelessWidget {
     return SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            HeaderCell('Шахцэ инфо / Personal data'),
-            InfoItemCell('Нӯм / Name', Icons.person),
-            InfoItemCell('Тилифӯн / Phone', Icons.phone),
-            InfoItemCell('Минтақа / Region', Icons.account_balance),
-            InfoItemCell('Мулк / District', Icons.local_convenience_store),
-            InfoItemCell('Хъар / City', Icons.location_city),
-            InfoItemCell('Ҷойдод / Address', Icons.location_on),
-            if (forDoctors) InfoItemCell('Беморӯна / Hospital', Icons.local_hospital),
-            CustomButton('Бидал кинху боз', (){})
+            HeaderCell('personal_data'.tr()),
+            InfoItemCell('name'.tr(), Icons.person),
+            InfoItemCell('phone'.tr(), Icons.phone),
+            InfoItemCell('region'.tr(), Icons.account_balance),
+            InfoItemCell('district'.tr(), Icons.local_convenience_store),
+            InfoItemCell('city'.tr(), Icons.location_city),
+            InfoItemCell('address'.tr(), Icons.location_on),
+            if (forDoctors) InfoItemCell('hospital'.tr(), Icons.local_hospital),
+            CustomButton('change_send_btn'.tr(), (){})
           ],
         )
     );

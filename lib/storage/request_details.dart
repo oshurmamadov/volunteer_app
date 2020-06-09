@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:volunteerapp/common/utils.dart';
 import 'package:volunteerapp/data/dto.dart';
 import 'package:volunteerapp/request_creator/doctor_dashboard.dart';
+import '../data/translations_wrapper.dart';
 
 class RequestDetails extends StatelessWidget {
   final Request request;
@@ -17,7 +18,7 @@ class RequestDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: isEditable ? Text('Хоихъ даруналот') : Text('Хоихъ даруналот - Таърих'),
+          title: isEditable ? Text('request_details'.tr()) : Text('request_details_history'.tr()),
           leading: BackButton(
             color: Colors.white,
           ),
@@ -36,14 +37,14 @@ class RequestDetails extends StatelessWidget {
                   ],
                 ),
                 Padding(padding: EdgeInsets.all(10),),
-                RequestProductTitle('Намуд/Type: ', request.status),
+                RequestProductTitle('type'.tr(), request.status),
                 Padding(padding: EdgeInsets.all(10),),
-                RequestProductTitle('Беморхӯна ё Анбор/Storage: ', request.owner),
+                RequestProductTitle('storage'.tr(), request.owner),
                 Padding(padding: EdgeInsets.all(10),),
-                RequestProductTitle('Ҷавъобгар: ', request.volunteer),
+                RequestProductTitle('reporter'.tr(), request.volunteer),
                 Padding(padding: EdgeInsets.all(10),),
                 Text(
-                  'Хасхорен:',
+                  'products'.tr(),
                   style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.black,
@@ -66,7 +67,7 @@ class RequestDetails extends StatelessWidget {
                 ,
                 Visibility(
                   visible: isEditable,
-                  child: CustomButton('Қабул кенам', (){}),
+                  child: CustomButton('accept_btn'.tr(), (){}),
                 )
               ],
             ),
@@ -178,7 +179,7 @@ class ProductAvailabilityCell extends State<ProductAvailability> {
         Visibility(
           visible: !_partiallyAvailable,
           child:  ProductAvailabilityCheckBox(
-              'Йаст',
+              'available'.tr(),
               _available,
               isEditable ? (value) {
                 setState(() {
@@ -192,7 +193,7 @@ class ProductAvailabilityCell extends State<ProductAvailability> {
         Visibility(
           visible: !_partiallyAvailable,
           child: ProductAvailabilityCheckBox(
-              'Нист',
+              'not_available'.tr(),
               _notAvailable,
               isEditable ? (value) {
                 setState(() {
@@ -208,7 +209,7 @@ class ProductAvailabilityCell extends State<ProductAvailability> {
           child: Row(
             children: [
               Text(
-                'Илав дӯнд',
+                'partially_available'.tr(),
                 style: TextStyle(
                     fontSize: 13.0,
                     color: Colors.blue,
@@ -237,7 +238,7 @@ class ProductAvailabilityCell extends State<ProductAvailability> {
                     ],
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: "цӯнд дӯна яст?",
+                      hintText: "available_amount".tr(),
                     ),
                   ),
                 )

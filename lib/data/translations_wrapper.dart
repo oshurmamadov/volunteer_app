@@ -5,7 +5,7 @@ var englishLanguage = 'English';
 var pamiriLanguage = 'Pamiri';
 
 extension Translate on String {
-  String translate() {
+  String tr() {
     if (TranslationWrapper().currentLanguage == pamiriLanguage) {
       return retrieveValueByKey(this, pamiriTranslations);
     }

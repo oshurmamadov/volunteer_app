@@ -4,15 +4,50 @@ import 'package:volunteerapp/request_creator/new_request.dart';
 import 'package:volunteerapp/common/personal_data.dart';
 import 'package:volunteerapp/common/utils.dart';
 import '../data/translations_wrapper.dart';
+import '../login.dart';
 
-class DoctorDashboard extends StatelessWidget {
+class DoctorDashboard extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return DoctorDashboardImpl();
+  }
+}
+
+class DoctorDashboardImpl extends State<DoctorDashboard> {
   @override
   Widget build(BuildContext context) {
+    String _language = 'to_language'.tr();
+    String _logout = 'logout'.tr();
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Йордамкунак'),
+          title: Text('app_title'.tr()),
+          actions: [
+            PopupMenuButton<String>(
+              onSelected: (value) {
+                if (value == _language) {
+                  setState(() {
+                    TranslationWrapper().switchLanguage();
+                  });
+                } else {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => Login()),
+                      (Route<dynamic> route) => false
+                  );
+                }
+              },
+              itemBuilder: (BuildContext context) {
+                return {_language, _logout}.map((String choice) {
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Text(choice),
+                  );
+                }).toList();
+              },
+            )
+          ],
         ),
         body: TabBarView(
           children: [
@@ -21,7 +56,7 @@ class DoctorDashboard extends StatelessWidget {
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  HeaderCell('Му хоихъен / My requests'),
+                  HeaderCell('my_requests'.tr()),
                   Expanded(
                     child: ListView.builder(
                         itemCount: 20,
@@ -106,7 +141,7 @@ class RequestCell extends StatelessWidget {
                   Flexible(
                     child: Center(
                         child: Text(
-                          '25 дӯна ',
+                          '25 ' + 'count'.tr(),
                           style: TextStyle(
                               fontSize: 20.0,
                               color: Colors.black,
@@ -122,13 +157,13 @@ class RequestCell extends StatelessWidget {
               //  Flexible(
               Padding(padding: EdgeInsets.all(10)),
               //RequestSimpleCell('Хуҷаин: Азизбеков Лашкарбек'),
-              RequestSimpleCell('storage'.translate() + ': Аптека №4'),
-              RequestSimpleCell('reporter'.translate() + ': Лашкарбеков Азизбек'),
+              RequestSimpleCell('storage'.tr() + ': Аптека №4'),
+              RequestSimpleCell('reporter'.tr() + ': Лашкарбеков Азизбек'),
               Padding(padding: EdgeInsets.all(10)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  RequestSimpleCell("ҳал судъҷин"),
+                  RequestSimpleCell("request_status_done".tr()),
                   RequestSimpleCell(" | "),
                   RequestSimpleCell("21.05.2020")
                 ],

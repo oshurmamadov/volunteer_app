@@ -4,17 +4,9 @@ import 'package:volunteerapp/common/personal_data.dart';
 import 'package:volunteerapp/common/utils.dart';
 import 'package:volunteerapp/data/dto.dart';
 import 'package:volunteerapp/storage/request_details.dart';
-
+import '../login.dart';
 import '../request_creator/doctor_dashboard.dart';
 import '../data/translations_wrapper.dart';
-
-void handleClick(String value) {
-  if (value == 'to_language'.translate()) {
-
-  } else {
-
-  }
-}
 
 class VolunteerDashboard extends StatefulWidget {
 
@@ -22,20 +14,19 @@ class VolunteerDashboard extends StatefulWidget {
   State<StatefulWidget> createState() {
     return VolunteerDashboardImpl();
   }
-
 }
 
 class VolunteerDashboardImpl extends State<VolunteerDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    String _language = 'to_language'.translate();
-    String _logout = 'logout'.translate();
+    String _language = 'to_language'.tr();
+    String _logout = 'logout'.tr();
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('storage_title'.translate()),
+          title: Text('app_title'.tr()),
           actions: [
             PopupMenuButton<String>(
               onSelected: (value) {
@@ -43,6 +34,11 @@ class VolunteerDashboardImpl extends State<VolunteerDashboard> {
                   setState(() {
                     TranslationWrapper().switchLanguage();
                   });
+                } else {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => Login()),
+                          (Route<dynamic> route) => false
+                  );
                 }
               },
               itemBuilder: (BuildContext context) {
@@ -58,8 +54,8 @@ class VolunteerDashboardImpl extends State<VolunteerDashboard> {
         ),
         body: TabBarView(
           children: [
-            StorageActiveRequests('active_requests'.translate(), true),
-            StorageActiveRequests('history'.translate(), false),
+            StorageActiveRequests('active_requests'.tr(), true),
+            StorageActiveRequests('history'.tr(), false),
             new Container(
               color: Colors.white,
               child: InfoCell(false),
@@ -92,13 +88,13 @@ class StorageActiveRequests extends StatelessWidget {
 
   var request = Request(
     [
-      ProductUnit('Сипандӯна', '89 дӯна'),
-      ProductUnit('Зирдоск', '14 дӯна')
+      ProductUnit('Сипандӯна', '89 ' + 'count'.tr()),
+      ProductUnit('Зирдоск', '14 ' + 'count'.tr())
     ],
     'Хъицӯн медпункт',
     '',
     '22.05.2020',
-    'Навъ',
+    'request_status_new'.tr(),
     'Мамадназарбеков Давлатбек',
   );
 

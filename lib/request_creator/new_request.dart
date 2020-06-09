@@ -1,13 +1,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:volunteerapp/common/utils.dart';
+import '../data/translations_wrapper.dart';
 
 class NewRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Навъ хоихъ'),
+        title: Text('new_request'.tr()),
         leading: BackButton(
           color: Colors.white,
         ),
@@ -15,20 +16,20 @@ class NewRequest extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            NewRequestSimpleCell('Хасхор/Product'),
-            NewRequestSimpleCell('Хасхор Дӯна/Product Count'),
-            NewRequestSimpleCell('Беморӯна ё Анбор/Storage'),
+            NewRequestSimpleCell('product'.tr()),
+            NewRequestSimpleCell('product_count'.tr()),
+            NewRequestSimpleCell('storage'.tr()),
             Padding(
               padding: EdgeInsets.all(15),
               child:  TextField(
                 maxLines: null,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: "ичизга гап ага ца вид..."
+                    hintText: "comment_hint".tr()
                 ),
               ),
             ),
-            CustomButton('Въедъху боз', (){})
+            CustomButton('add_send_btn'.tr(), (){})
           ],
         ),
       )
@@ -67,7 +68,7 @@ class NewRequestSimpleCell extends StatelessWidget {
               maxLines: null,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: "нивиш..."
+                  hintText: "add_hint".tr()
               ),
             ),
           )
